@@ -89,7 +89,7 @@
      if  ($('#password').val() == $('#password2').val() ){
               $.ajax({
       url: 'api/account/register',
-      type: 'GET',
+      type: 'PUT',
       dataType:'json',
       data:{
         "name":$('#name').val(),

@@ -10,11 +10,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-      $name = $_GET['name'];
-      $password = $_GET['password'];
-      $email = $_GET['email'];
-      $phone = $_GET['phone'];
-      
+$request_method = strtolower($_SERVER['REQUEST_METHOD']); 
+switch ($request_method){  
+  case 'put':  
+      parse_str(file_get_contents('php://input'), $data);  
+      $name = $data['name'];
+      $password = $data['password'];
+      $email = $data['email'];
+      $phone = $data['phone'];
+          break;  
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 $sql = "INSERT INTO users SET name='$name', password='$password', email='$email', phone=$phone";
 $result = mysqli_query($conn, $sql);
 
