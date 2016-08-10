@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style type="text/css">
+            button{
+        background:yellow !important;
+        border:none !important;
+        width:100% !important;
+        height:50px !important;
+        padding:0px 0px !important;
+        text-shadow:none !important;
+    }
+        .login-logo{
+            width:100px;
+        }
+                #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+               input{
+           background:black !important;
+           border:none !important;
+           text-shadow:none !important;
+           height:50px;
+       }
+        .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+            background:black!important;
+            border:none!important;
+            color:yellow!important;
+        }
+        
+    </style>
+</head>
+<body>
+<div data-role="page"  id="page">
+
+  <div data-role="header" id="header">
+    <h1>Profile</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+      <div  style="text-align:center">
+         <img class="login-logo" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></img>
+      </div>
+    <form>
+        <h1 id="username">username</h1>
+        <label for="email">Email</label>
+        <input type="text" name="name" id="email" />
+        <br>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" />
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <br>
+            <button onclick="updateProfile()" >Update</button>
+    </form>
+    <h3 id="error"></h3>
+    <br>
+            <h3><a data-rel="back" style="color:yellow">Back</a></h3>
+    </div>
+<script>
+$(document).ready(function(){
+    var name = window.localStorage.login;
+    $('#username').text(name);
+      $.ajax({
+      url: 'api/account/check.php',
+      type: 'GET',
+      dataType:'json',
+      data: {
+        name: window.localStorage.login
+      },
+    success: function(data){
+        console.log(data);
+         var error = data.result;
+        if ( error !== null) {
+            $('#email').val(data.result['email']);
+            $('#phone').val(data.result['phone']);
+        } else {
+            $('#error').text('error');
+        }
+        },
+         error: function(data){
+            console.log('errorrrrr');
+            console.log(data);
+    }
+    });
+    });
+
+function updateProfile() {
+    $('form').on('submit', function(e) {
+    e.preventDefault();
+      $.ajax({
+      url: 'api/account/update.php',
+      type: 'POST',
+      dataType:'json',
+      data: {
+        name: window.localStorage.login,
+        password: $('#password').val(),
+        email: $('#email').val(),
+        phone: $('#phone').val(),
+      },
+    success: function(data){
+        console.log(data);
+        var error = data.result;
+        if ( error == true) {
+             $('#error').text('Success');
+            window.location.href='news.html';
+        } else {
+          $('#error').text('Error! Update Again');
+            
+        }
+        },
+    error: function(data){
+        console.log('errorrrrr');
+        console.log(data);
+    }
+    });
+});
+}
+</script>
+</div>
+</body>
+</html>

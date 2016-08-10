@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style type="text/css">
+    button{
+        background:yellow !important;
+        border:none !important;
+        width:100% !important;
+        height:50px !important;
+        padding:0px 0px !important;
+        text-shadow:none !important;
+    }
+        #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+        #post{
+            background:black;
+            color:yellow;
+            border:none;
+            text-shadow:none;
+        }
+        .ui-content{
+             color:yellow;
+             background:#212121;
+        }
+        
+       input{
+           background:black !important;
+           border:none !important;
+           text-shadow:none !important;
+       }
+        .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+            background:black!important;
+            border:none!important;
+            color:yellow!important;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="page">
+ 
+  <div data-role="header" id="header">
+    <h1>POST</h1>
+</div>
+
+  <div data-role="main" class="ui-content">
+        <form>
+            <input type="text" name="title" id="title" placeholder="Title" />
+            <input type="text" name="img" id="img" placeholder="Image URL" />
+            <input type="date" name="date" id="date" value="2016-08-01" />
+            <input type="text" name="content" id="content" style="width:90%;height:100px"  placeholder="Content"  />
+            <button type="button" onclick="postNews()" >Post</button>
+        </form>
+        <h3><a data-rel="back" style="color:yellow">Back</a></h3>
+  </div>
+  
+  </div>
+
+  
+<script>
+    
+    function postNews(){
+    $.ajax({
+      url: 'api/news/post.php',
+      type: 'PUT',
+      cache: false,
+      dataType:'json',
+      data:{
+        "title":$('#title').val(),
+        "img":$('#img').val(),
+        "date":$('#date').val(),
+        "content":$('#content').val(),
+      },
+    success: function(data){
+        console.log(data);
+        if (data.result = true){
+            window.location.href='news.html';
+        }
+        },
+    error: function(data){
+        console.log('errorrrrr');
+        console.log(data);
+    }
+    });
+    } 
+
+</script>
+</div>
+</body>
+</html>

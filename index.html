@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+function login(){
+      $.ajax({
+      url: 'api/account/login.php',
+      type: 'POST',
+      dataType:'json',
+      data: {
+        name: $('#name').val(),
+        password: $('#password').val()
+      },
+    success: function(data){
+        console.log(data);
+        var error = data.result;
+        if ( error != null) {
+        window.localStorage.login = data.result['name'];
+        window.location.href='news.html';
+        $('#error').text('Login Success');
+        } else {
+        $('#error').text('Error! Login Again');
+
+        }
+        },
+    error: function(data){
+        console.log('errorrrrr');
+        console.log(data);
+    }
+    });
+}
+</script>
+    <style type="text/css">
+    
+            button{
+        background:yellow !important;
+        border:none !important;
+        width:100% !important;
+        height:50px !important;
+        padding:0px 0px !important;
+        text-shadow:none !important;
+    }
+        .login-logo{
+            width:100px;
+        }
+                #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+               input{
+           background:black !important;
+           border:none !important;
+           text-shadow:none !important;
+           height:50px;
+       }
+        .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+            background:black!important;
+            border:none!important;
+            color:yellow!important;
+        }
+        
+    </style>
+</head>
+<body>
+<div data-role="page" id="page">
+
+  <div data-role="header" id="header">
+    <h1>Welcome</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+      <div  style="text-align:center">
+         <img class="login-logo" src="http://www.myiconfinder.com/uploads/iconsets/db49de35ea63c8f6ef7dbea85d9c8d72.png"></img>
+      </div>
+    <form>
+        <label for="name">User Name</label>
+        <input type="text" name="name" id="name" required />
+        <label for="password">Password <a href="" style="font-size:11px">Forgot?</a></label>
+        <input type="password" name="password" id="password" required />
+        <p></p>
+        <button onclick="login()" >Login</button>
+    <h3 id="error"></h3>
+
+    </form>
+    <br>
+    <h4>No Account? <a href="register.html">Register Now!</a></h4>
+  </div>
+
+</div>
+</body>
+</html>

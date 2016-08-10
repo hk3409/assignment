@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+
+    <style type="text/css">
+    button{
+        background:yellow !important;
+        border:none !important;
+        width:100% !important;
+        height:50px !important;
+        padding:0px 0px !important;
+        text-shadow:none !important;
+    }
+        #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+        #post{
+            background:black;
+            color:yellow;
+            border:none;
+            text-shadow:none;
+        }
+        .ui-content{
+             color:yellow;
+             background:#212121;
+        }
+        
+       input{
+           background:black !important;
+           border:none !important;
+           text-shadow:none !important;
+       }
+        .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+            background:black!important;
+            border:none!important;
+            color:yellow!important;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="page">
+ 
+  <div data-role="header" id="header">
+    <h1>REGISTER</h1>
+</div>
+
+  <div data-role="main" class="ui-content">
+        <form>
+            <input type="text" name="name" id="name" placeholder="user name" />
+            <input type="password" name="password" id="password" placeholder="password" />
+            <input type="password" name="password2" id="password2" placeholder="confirm password" />
+            <input type="text" name="email" id="email" placeholder="email@address.com" />
+            <input type="text" name="phone" id="phone" placeholder="phone number"  />
+            <button onclick="registerUser()" type="button">Registers</button>
+        </form>
+        <h3 id="error"></h3>
+        <h3><a data-rel="back" style="color:yellow">Back</a></h3>
+  </div>
+  </div>
+
+      <script>
+    function registerUser(){
+     if  ($('#password').val() == $('#password2').val() ){
+              $.ajax({
+      url: 'api/account/register',
+      type: 'GET',
+      dataType:'json',
+      data:{
+        "name":$('#name').val(),
+        "password":$('#password').val(),
+        "email":$('#email').val(),
+        "phone":$('#phone').val(),
+      },
+    success: function(data){
+        console.log(data);
+        if (data.result == true){
+            window.localStorage.login = $('#name').val();
+            $('#error').text('Register Success!');
+            window.location = 'index.html';
+        }
+        }
+    });
+
+        } else {
+             $('#error').text('Error! Login Again!');
+        }
+    } 
+</script>
+
+</div>
+</body>
+</html>

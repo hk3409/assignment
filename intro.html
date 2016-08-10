@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style type="text/css">
+    button{
+        background:yellow;
+        border:none;
+        width:100%;
+        height:50px;
+        padding:0px 0px;
+        text-shadow:none;
+    }
+        #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+        #post{
+            background:black;
+            color:yellow;
+            border:none;
+            text-shadow:none;
+        }
+        .ui-content{
+             color:yellow;
+             background:#212121;
+        }
+       .ui-grid-solo img{
+           width:100%;
+           /*object-fit:cover;*/
+       }
+       .ui-block-a{
+           height:300px !important;
+           position:relative;
+           margin-bottom:20px !important;
+       }
+       .ui-block-a h2{
+           font-size:21px;
+            position:absolute;
+            top:0px;
+            text-shadow:none;
+            color:yellow;
+            padding:20px;
+       }
+       #panel{
+           background:#333;
+           color:yellow;
+           text-shadow:none;
+       }
+       
+       ul>li{
+           background:transparent !important;
+           font-size:20px;
+           border-color:yellow !important;
+           color:yellow !important;
+           text-shadow:none !important;
+       }
+       li>a{
+        background:transparent !important;
+           font-size:20px !important;
+           border-color:yellow !important;
+           color:yellow !important;
+           text-shadow:none !important;
+       }
+        
+    </style>
+</head>
+<body>
+<div data-role="page" id="page">
+  <div data-role="panel" id="panel"> 
+    <h2>Menu</h2>
+    <ul data-role="listview">
+        <li data-icon="false"><a href="profile.html" rel="external" >Profile</a></li>
+             <li data-icon="false"><a onclick="window.location.reload()">Intro</a></li>
+        <li data-icon="false"><a href="news.html" rel="external">News</a></li>
+        <li data-icon="false"><a href="map.html" rel="external">Map</a></li>
+        <li data-icon="false"><a onclick="logout()">Logout</a></li>
+    </ul>
+  </div> 
+  <div data-role="header" id="header">
+    <h1>INTRO</h1>
+<a href="#panel" class="ui-btn ui-btn-inline" style="border:none;background:#212121;font-size:30px;padding:10px;"><i class="material-icons" style="font-size:40px !important;color:yellow;text-shadow:none">menu</i></a>
+</div>
+
+  <div data-role="main" class="ui-content">
+    <div id="mainContent" class="mainContent" style="margin-top: 25px;text-shadow:none">
+                  	<!-- BEGIN CONTENT -->
+                   <!-- BEGIN CONTENT --><p>
+	The objective of the <a href="http://www.legislation.gov.hk/blis_pdf.nsf/6799165D2FEE3FA94825755E0033E532/B4DF8B4125C4214D482575EF000EC5FF/$FILE/CAP_486_e_b5.pdf" rel="external" target="_blank"><span class="access">This link will open in a new window</span><strong>Personal Data (Privacy) Ordinance </strong>(Cap. 486) </a>(<img alt="" src="https://www.pcpd.org.hk/english/data_privacy_law/ordinance_at_a_Glance/images/icons_pdf.gif" style="width: 100%; height: 100%; max-width: 22px; max-height: 27px;">pdf format) is to protect the privacy rights of a person in relation to personal data (Data Subject).</p>
+<h3>
+	Personal Data</h3>
+<p>
+	(1) The information which relates to a living person and can be used to identify that person. (2) It exists in a form in which access or processing is practicable.</p>
+<p>
+	Examples of personal data protected by the Ordinance include names, phone numbers, addresses, identity card numbers, photos, medical records and employment records.</p>
+<h3>
+	Data User</h3>
+<p>
+	A person who, either alone or jointly or in common with other persons, controls the collection, holding, processing or use of the data. The Data User is liable as the principal for the wrongful act of its authorised data processor.</p>
+<h3>
+	Six Data Protection Principles</h3>
+<p>
+	Everyone who is responsible for handling data (Data User) should follow the <strong>Six Data Protection Principles ("DPPs")</strong> which represents the core of the Ordinance covering the life cycle of a piece of personal data:</p>
+<br>
+<h4>
+	DPP1 - Data Collection Principle<a name="1"></a></h4>
+<p>
+	Personal data must be collected in a lawful and fair way, for a purpose directly related to a function /activity of the data user.</p>
+<p>
+	Data subjects must be notified of the purpose and the classes of persons to whom the data may be transferred.</p>
+<p>
+	Data collected should be necessary but not excessive.</p>
+<hr>
+<h4>
+	DPP2- Accuracy &amp; Retention Principle<a name="2"></a></h4>
+<p>
+	Personal data must be accurate and should not kept for a period longer than is necessary to fulfil the purpose for which it is used.</p>
+<hr>
+<h4>
+	DPP3 - Data Use Principle<a name="3"></a></h4>
+<p>
+	Personal data must be used for the purpose for which the data is collected or for a directly related purpose, unless voluntary and explicit consent with a new purpose is obtained from the data subject.</p>
+<hr>
+<h4>
+	DPP4 - Data Security Principle<a name="4"></a></h4>
+<p>
+	A data user needs to take practical steps to safeguard personal data from unauthorised or accidental access, processing , erasure, loss or use.</p>
+<hr>
+<h4>
+	DPP5 - Openness Principle<a name="5"></a></h4>
+<p>
+	A data user must make personal data policies and practices known to the public regarding the types of personal data it holds and how the data is used.</p>
+<hr>
+<h4>
+	DPP6 - Data Access &amp; Correction Principle<a name="6"></a></h4>
+<p>
+	A data subject must be given access to his/her personal data and allowed to make corrections if it is inaccurate.</p>
+<h3>
+	Offences and Compensation</h3>
+<ul>
+	<li>
+		<strong>Non-compliance with Data Protection Principles does not constitute a criminal offence directly</strong>. The Commissioner may serve an Enforcement Notice to direct the data user to remedy the contravention and/ or instigate the prosecution action.</li>
+	<li>
+		<strong>Contravention of an enforcement notice is an offence</strong> which could result in a maximum fine of HK$50,000 and imprisonment for 2 years.</li>
+	<li>
+		An individual who suffers damage, including injured feelings, by reason of a contravention of the Ordinance in relation to his or her personal data may seek compensation from the data user concerned.</li>
+	<li>
+		The Ordinance also criminalises misuse or inappropriate use of personal data in direct marketing activities <a href="http://www.legislation.gov.hk/blis_ind.nsf/CurAllEngDoc/A914D73E5E480B4648257B41000CAE59?OpenDocument" rel="external" target="_blank"><span class="access">This link will open in a new window</span>(Part VI)</a>; non-compliance with Data Access Request <a href="http://www.legislation.gov.hk/blis_ind.nsf/CurAllEngDoc/11BD9E352F31ACFC48257A9100232857?OpenDocument" rel="external" target="_blank"><span class="access">This link will open in a new window</span>(section 19)</a>; unauthorised disclosure of personal data obtained without data user's consent <a href="http://www.legislation.gov.hk/blis_ind.nsf/CurAllEngDoc/EBDC9E9450F5F53248257A91002328AE?OpenDocument" rel="external" target="_blank"><span class="access">This link will open in a new window</span>(section 64)</a> etc.</li>
+</ul>
+<h3>
+	Exemption</h3>
+<p>
+	The Ordinance provides:</p>
+<ul>
+	<li>
+		General exemption for personal data held for <strong>domestic or recreational purposes </strong>;</li>
+	<li>
+		Exemptions from access requirement for certain <strong>employment related personal data and relevant process</strong>; and</li>
+	<li>
+		Exemptions from access and use limitation requirements for <strong>data which are likely to prejudice security, defence and international relations; crime prevention or detection; assessment or collection of any tax or duty; news activities; health; legal proceeding; due diligence exercise; archiving; handling life-threatening emergency situation etc</strong><strong>（</strong><strong>non-exhausive</strong><strong>）</strong><strong>. </strong></li>
+</ul>
+<p class="caption">
+	*Should there be any discrepencies between the contents of this page and that of the Ordinance, the latter shall prevail.</p>
+ <!-- END CONTENT -->
+				 <!-- END CONTENT -->
+                  </div>
+  </div>
+  
+  </div>
+
+  
+<script>
+
+ function logout(){
+     window.localStorage.clear();
+     window.location.href = 'index.html';
+ }
+
+</script>
+</div>
+</body>
+</html>

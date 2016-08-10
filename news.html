@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>305CDE Website</title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style type="text/css">
+    button{
+        background:yellow;
+        border:none;
+        width:100%;
+        height:50px;
+        padding:0px 0px;
+        text-shadow:none;
+    }
+        #page{
+            text-shadow:none;
+            color:yellow;
+             background:#212121;
+        }
+        #header{
+            background:#212121 !important;
+            border:none;
+            text-shadow:none;
+            color:yellow;
+            height:80px;
+            font-size: 30px
+        }
+        #post{
+            background:black;
+            color:yellow;
+            border:none;
+            text-shadow:none;
+        }
+        .ui-content{
+             color:yellow;
+             background:#212121;
+        }
+       .ui-grid-solo img{
+           width:100%;
+           /*object-fit:cover;*/
+       }
+       .ui-block-a{
+           height:300px !important;
+           position:relative;
+           margin-bottom:20px !important;
+       }
+       .ui-block-a h2{
+           font-size:21px;
+            position:absolute;
+            top:0px;
+            text-shadow:none;
+            color:yellow;
+            padding:20px;
+       }
+       #panel{
+           background:#333;
+           color:yellow;
+           text-shadow:none;
+       }
+       
+       ul>li{
+           background:transparent !important;
+           font-size:20px;
+           border-color:yellow !important;
+           color:yellow !important;
+           text-shadow:none !important;
+       }
+       li>a{
+        background:transparent !important;
+           font-size:20px !important;
+           border-color:yellow !important;
+           color:yellow !important;
+           text-shadow:none !important;
+       }
+        
+    </style>
+</head>
+<body>
+<div data-role="page" id="page">
+  <div data-role="panel" id="panel"> 
+    <h2>Menu</h2>
+    <ul data-role="listview">
+        <li data-icon="false"><a href="profile.html" rel="external" >Profile</a></li>
+                     <li data-icon="false"><a href="intro.html" rel="external">Intro</a></li>
+
+        <li data-icon="false"><a onclick="window.location.reload()">News</a></li>
+        <li data-icon="false"><a href="map.html" rel="external">Map</a></li>
+        <li data-icon="false"><a onclick="logout()">Logout</a></li>
+    </ul>
+  </div> 
+  <div data-role="header" id="header">
+    <h1>NEWS</h1>
+<a href="#panel" class="ui-btn ui-btn-inline" style="border:none;background:#212121;font-size:30px;padding:10px;"><i class="material-icons" style="font-size:40px !important;color:yellow;text-shadow:none">menu</i></a>
+</div>
+
+  <div data-role="main" class="ui-content">
+       <a href="post.html" rel="external"><button id="post">POST</button></a>
+        <h1 id="error"></h1>
+     <div class="ui-grid-solo">
+</div>
+  </div>
+  
+  </div>
+
+  
+<script>
+$(document).ready(function(){
+      $.ajax({
+      url: 'api/news/read.php',
+      type: 'GET',
+      dataType:'json',
+    success: function(data){
+        console.log(data);
+         var error = data.result;
+        if ( error !== null) {
+        $.each(data.result, function(i, item) {
+            console.log(item['title']);
+            if (window.localStorage.login=='admin'){
+             $('.ui-grid-solo').append('<div class="ui-block-a"><img src="'+ item.img +'" alt="' + item.id + '"><h2>'+ item.title +'</h2><button id="'+item.id+'" onclick="deleteNews(this.id)">DELETE</button></div>');
+            } else {
+             $('.ui-grid-solo').append('<div class="ui-block-a"><img src="'+ item.img +'" alt="' + item.id + '"><h2>'+ item.title +'</h2></div>');
+            }
+        });
+        } else {
+            $('#error').text('cannot found any news');
+        }
+        },
+         error: function(data){
+            console.log('errorrrrr');
+            console.log(data);
+    }
+    });
+    });
+    
+    function deleteNews(id){
+        $.ajax({
+      url: 'api/news/delete',
+      type: 'DELETE',
+      dataType:'json',
+      data:{
+          "id":id
+      },
+    success: function(data){
+        console.log(data);
+        window.location.reload();
+        },
+    error: function(data){
+        console.log('errorrrrr');
+        console.log(data);
+    }
+    });
+    }    
+
+ function logout(){
+     window.localStorage.clear();
+     window.location.href = 'index.html';
+ }
+
+</script>
+</div>
+</body>
+</html>
